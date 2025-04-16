@@ -78,6 +78,5 @@ class TestTelevision(unittest.TestCase):
         TV.mute()
         self.assertEqual(str(TV), "Power=[True], Channel=[0], Volume=[0]")
 
-
 if __name__ == '__main__':
     unittest.main()
