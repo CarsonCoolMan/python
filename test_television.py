@@ -10,6 +10,7 @@ class TestTelevision(unittest.TestCase):
         self.assertFalse(TV.muted)
         self.assertAlmostEqual(0, TV.volume)
         self.assertAlmostEqual(0, TV.channel)
+        self.assertAlmostEqual(0, Tv.Channel)
 
     def test_power(self):
         TV = Television()
@@ -49,7 +50,7 @@ class TestTelevision(unittest.TestCase):
         TV.volume = Television.MAX_VOLUME - 1
         TV.volume_up()
         self.assertEqual(TV.volume, Television.MAX_VOLUME)
-        TV.volume_up()  
+        TV.volume_up()
         self.assertEqual(TV.volume, Television.MAX_VOLUME)
 
     def test_volume_down(self):
