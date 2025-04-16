@@ -48,6 +48,6 @@ class Television:
             else:
                 self.volume = self.volume - 1
 
-if __name__ == "__main__":
-    TV = Television()
-    TV.power(True)
+    def __str__(self):
+        return f"Power=[{self.status}], Channel=[{self.channel}], Volume=[{self.volume}]"
+
