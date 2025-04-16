@@ -8,16 +8,22 @@ class Television:
         self.muted = muted
         self.volume = volume
         self.channel = channel
+        self._prev_volume = volume  # private variable to track previous volume
 
-    def power(self, status: bool):
+    def power(self):
         """
         :param status: this turns the TV on or off
         """
-        self.status = status
-
-    def mute(self, muted: bool):
-        self.muted = muted
-
+        if self.status == True:
+            self.status = False
+        else:
+            self.status = True
+    def mute(self):
+        if self.status == True:
+            if self.muted == True:
+                self.muted = False
+            else:
+                self.muted = True
     def channel_up(self):
         if self.status:
             if self.channel + 1 > Television.MAX_CHANNEL:
@@ -28,7 +34,7 @@ class Television:
     def channel_down(self):
         if self.status:
             if self.channel - 1 < Television.MIN_CHANNEL:
-                self.channel = self.channel - 1
+                self.channel = Television.MAX_CHANNEL
             else:
                 self.channel = self.channel - 1
 
@@ -49,5 +55,7 @@ class Television:
                 self.volume = self.volume - 1
 
     def __str__(self):
+        if self.muted:
+            return f"Power=[{self.status}], Channel=[{self.channel}], Volume=[{0}]"
         return f"Power=[{self.status}], Channel=[{self.channel}], Volume=[{self.volume}]"
 
