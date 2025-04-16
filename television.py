@@ -8,7 +8,7 @@ class Television:
         self.muted = muted
         self.volume = volume
         self.channel = channel
-        self._prev_volume = volume  # private variable to track previous volume
+        self._prev_volume = volume
 
     def power(self):
         """
@@ -23,6 +23,8 @@ class Television:
             if self.muted == True:
                 self.muted = False
             else:
+                self._prev_volume = self.volume
+                self.volume = Television.MIN_VOLUME
                 self.muted = True
     def channel_up(self):
         if self.status:
@@ -39,8 +41,10 @@ class Television:
                 self.channel = self.channel - 1
 
     def volume_up(self):
-        self.muted = False
         if self.status:
+            if self.muted == True:
+                self.muted = False
+                self.volume = self._prev_volume
             if self.volume + 1 > Television.MAX_VOLUME:
                 pass
             else:
